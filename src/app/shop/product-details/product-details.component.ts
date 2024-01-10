@@ -22,7 +22,7 @@ export class ProductDetailsComponent implements OnInit{
     let id = +this.activatedRoute.snapshot.params['id'];
     this.shopService.getProduct(id).subscribe(product => {
       this.product = product;
-      console.log(product);
+      // console.log(product);
     }, error => {
       console.log(error);
     }

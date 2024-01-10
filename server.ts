@@ -54,3 +54,14 @@ function run(): void {
 }
 
 run();
+
+
+// angular.json FILE
+// "serve": {
+//   "builder": "@angular-devkit/build-angular:dev-server",
+//   line 78
+// "options": {
+//   "sslCert": "ssl/localhost.pem",
+//   "sslKey": "ssl/localhost-key.pem",
+//   "ssl": true
+// },

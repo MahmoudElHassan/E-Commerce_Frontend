@@ -6,12 +6,13 @@ import { IType } from '../shared/_models/type';
 import { map } from 'rxjs/operators';
 import { ShopParams } from '../shared/_models/shopParams';
 import { IProduct } from '../shared/_models/product';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShopService {
-  baseUrl = 'https://localhost:7031/api/';
+  baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
