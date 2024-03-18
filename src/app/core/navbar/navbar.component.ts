@@ -1,7 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { BasketService } from '../../basket/basket.service';
 import { Observable } from 'rxjs';
 import { IBasket } from '../../shared/_models/basket';
+import { IUser } from '../../shared/_models/user';
+import { AccountService } from '../../account/account.service';
+
+// @Injectable({
+//   providedIn: 'root'
+// })
 
 @Component({
   selector: 'app-navbar',
@@ -10,11 +16,16 @@ import { IBasket } from '../../shared/_models/basket';
 })
 export class NavbarComponent implements OnInit {
   basket$!: Observable<IBasket>;
-
-  constructor(private basketService: BasketService) {}
+  currentUser$!: Observable<IUser | null | undefined>;
+  constructor(private basketService: BasketService, private accountService: AccountService) {}
   
-  ngOnInit(): void {
+  ngOnInit() {
     this.basket$ = this.basketService.basket$;
-  } 
+    this.currentUser$ = this.accountService.currentUser$;
+  }
+
+  logout() {
+    this.accountService.logout();
+  }
 
 }

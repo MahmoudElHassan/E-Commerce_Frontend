@@ -9,7 +9,7 @@ import { IProduct } from '../shared/_models/product';
   providedIn: 'root'
 })
 export class BasketService {
-  basurl = environment.apiUrl;
+  baseUrl = environment.apiUrl;
   private basketSource = new BehaviorSubject<IBasket>(null!);
   basket$ = this.basketSource.asObservable();
   private basketTotalSource = new BehaviorSubject<BasketTotals>(null!);
@@ -18,7 +18,7 @@ export class BasketService {
   constructor(private http: HttpClient) { }
 
   getBasket(id:string){
-    return this.http.get<IBasket>(this.basurl + 'Basket?id=' + id).pipe(
+    return this.http.get<IBasket>(this.baseUrl + 'Basket?id=' + id).pipe(
       map((basket: IBasket) => {
         this.basketSource.next(basket);
         this.calculateTotals();
@@ -28,7 +28,7 @@ export class BasketService {
   };
 
   setBasket(basket: IBasket) {
-    return this.http.post<IBasket>(this.basurl + 'Basket', basket).subscribe((response: IBasket) => {
+    return this.http.post<IBasket>(this.baseUrl + 'Basket', basket).subscribe((response: IBasket) => {
       this.basketSource.next(response);
       this.calculateTotals()
       //console.log(response);
@@ -38,7 +38,7 @@ export class BasketService {
   }
 
   deleteBasket(basket: IBasket) {
-    return this.http.delete<IBasket>(this.basurl + "Basket?id=" + basket.id).subscribe(() => {
+    return this.http.delete<IBasket>(this.baseUrl + "Basket?id=" + basket.id).subscribe(() => {
       this.basketSource.next(null!);
       this.basketTotalSource.next(null!);
       localStorage.removeItem('basket_id');
