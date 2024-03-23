@@ -3,10 +3,13 @@ import { v4 as uuidv4 } from 'uuid';
 export interface IBasket {
     id: string
     items: IBasketItem[];
+    clientSecret: string;
+    paymentIntentId: string;
+    deliveryMethodId: number;
+    shippingPrice: number;
 }
 
 export interface IBasketItem {
-    isDelete: boolean
     id: number
     productName: string
     price: number
@@ -14,12 +17,13 @@ export interface IBasketItem {
     pictureUrl: string
     brand: string
     type: string
+    isDelete: boolean
 }
 
 export class Basket implements Basket {
     id = uuidv4();
     items: IBasketItem[] = [];
-    //shippingPrice = 0;
+    shippingPrice = 0;
 }
 
 export interface BasketTotals {

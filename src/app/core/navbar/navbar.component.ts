@@ -20,7 +20,9 @@ export class NavbarComponent implements OnInit {
   constructor(private basketService: BasketService, private accountService: AccountService) {}
   
   ngOnInit() {
-    this.basket$ = this.basketService.basket$;
+    this.basket$ = this.basketService.basketSource$;
+    console.log(this.basket$);
+    
     this.currentUser$ = this.accountService.currentUser$;
   }
 

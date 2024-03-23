@@ -19,7 +19,7 @@ import { SharedModule } from '../shared/shared.module';
     RouterModule,
     BreadcrumbModule,
     SharedModule,
-    
+
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
       preventDuplicates: true
